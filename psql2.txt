@@ -1,0 +1,52 @@
+felipe=# CREATE DATABASE movies
+felipe-# ;
+CREATE DATABASE
+felipe=# \c movies
+Ahora está conectado a la base de datos «movies» con el usuario «felipe».
+
+movies=# CREATE TABLE Movies (
+movies(# id serial,
+movies(# name varchar(30)
+movies(# );
+CREATE TABLE
+movies=# INSERT INTO movies (name) VALUES ('el rey leon');
+INSERT 0 1
+movies=# INSERT INTO movies (name) VALUES ('terminator II');
+INSERT 0 1
+movies=# select * from movies
+movies-# ;
+ id |     name      
+----+---------------
+  1 | el rey leon
+  2 | terminator II
+(2 filas)
+
+movies=# ALTER TABLE movies ADD COLUMN year varchar(30);
+ALTER TABLE
+movies=# select * from movies
+movies-# ;
+ id |     name      | year 
+----+---------------+------
+  1 | el rey leon   | 
+  2 | terminator II | 
+(2 filas)
+
+movies=# UPDATE movies SET year= 1984;
+UPDATE 2
+movies=# select * from movies
+movies-# ;
+ id |     name      | year 
+----+---------------+------
+  1 | el rey leon   | 1984
+  2 | terminator II | 1984
+(2 filas)
+
+movies=# DELETE FROM movies WHERE name ='terminator II';
+DELETE 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year 
+----+-------------+------
+  1 | el rey leon | 1984
+(1 fila)
+

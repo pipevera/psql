@@ -1,0 +1,14 @@
+
+1. CREATE DATABASE movies;
+2. CREATE TABLE movie(
+	id serial,
+	name varchar(20)
+	);
+3) INSERT INTO movies (name) VALUES ('el rey leon');
+4) INSERT INTO movies (name VALUES ('terminator II');
+5) ALTER TABLE movies ADD COLUMN year varchar (30);
+6) INSERT INTO movies (year) VALUES ('1984');
+7) CREATE USER felipe2;
+8) psql -U felipe2
+9) INSERT INTO movies (name) VALUES ('dragon ball');
+ERROR: permiso denegado a la relacion movies.
