@@ -1,0 +1,164 @@
+felipe=# \c movies
+Ahora está conectado a la base de datos «movies» con el usuario «felipe».
+movies=# SELECT * FROM movies
+movies-# ;
+ id |    name     | year 
+----+-------------+------
+  1 | el rey leon | 1984
+(1 fila)
+
+movies=# INSERT INTO movies (name) VALUES ('toy story');
+INSERT 0 1
+movies=# INSERT INTO movies (name) VALUES ('dragon ball');
+INSERT 0 1
+movies=# INSERT INTO movies (name) VALUES ('monster inc')
+movies-# ;
+}INSERT 0 1
+movies=# INSERT INTO movies (name) VALUES ('star wars')
+movies-# ;
+INSERT 0 1
+movies=# INSERT INTO movies (name) VALUES ('spiderman')
+movies-# ;
+INSERT 0 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year 
+----+-------------+------
+  1 | el rey leon | 1984
+  3 | toy story   | 
+  4 | dragon ball | 
+  5 | monster inc | 
+  6 | star wars   | 
+  7 | spiderman   | 
+(6 filas)
+
+movies=# UPDATE movies SET year= 1999 WHERE name= 'toy story';
+UPDATE 1
+movies=# UPDATE movies SET year= 1989 where name= 'dragon ball';
+UPDATE 1
+movies=# UPDATE movies SET year= 2000 where name= 'monster inc';
+UPDATE 1
+movies=# UPDATE movies SET year= 1978 where name= 'star wars';
+UPDATE 1
+movies=# update movies set year= 2017 where name= 'spiderman';
+UPDATE 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year 
+----+-------------+------
+  1 | el rey leon | 1984
+  3 | toy story   | 1999
+  4 | dragon ball | 1989
+  5 | monster inc | 2000
+  6 | star wars   | 1978
+  7 | spiderman   | 2017
+(6 filas)
+
+
+
+
+movies=# SELECT * FROM movies ORDER BY name LIMIT 3
+movies-# ;
+ id |    name     | year 
+----+-------------+------
+  4 | dragon ball | 1989
+  1 | el rey leon | 1984
+  5 | monster inc | 2000
+(3 filas)
+
+movies=# SELECT * FROM movies ORDER BY year LIMIT 3;
+ id |    name     | year 
+----+-------------+------
+  6 | star wars   | 1978
+  1 | el rey leon | 1984
+  4 | dragon ball | 1989
+(3 filas)
+
+movies=# SELECT count(name) FROM movies;
+ count 
+-------
+     6
+(1 fila)
+
+movies=# SELECT count(year) FROM movies;
+ count 
+-------
+     6
+(1 fila)
+
+movies=# ALTER TABLE movies ADD COLUMN categoria varchar(30);
+ALTER TABLE
+movies=# select * from movies
+movies-# ;
+ id |    name     | year | categoria 
+----+-------------+------+-----------
+  1 | el rey leon | 1984 | 
+  3 | toy story   | 1999 | 
+  4 | dragon ball | 1989 | 
+  5 | monster inc | 2000 | 
+  6 | star wars   | 1978 | 
+  7 | spiderman   | 2017 | 
+(6 filas)
+
+
+movies=# UPDATE movies SET categoria= 'infantil' WHERE name= 'el rey leon';
+UPDATE 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year | categoria 
+----+-------------+------+-----------
+  3 | toy story   | 1999 | 
+  4 | dragon ball | 1989 | 
+  5 | monster inc | 2000 | 
+  6 | star wars   | 1978 | 
+  7 | spiderman   | 2017 | 
+  1 | el rey leon | 1984 | infantil
+(6 filas)
+
+movies=# update movies set categoria= 'anime' where name= 'dragon ball';
+UPDATE 1
+movies=# update movies set categoria= 'belica' where name= 'monster inc';
+UPDATE 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year | categoria 
+----+-------------+------+-----------
+  3 | toy story   | 1999 | 
+  6 | star wars   | 1978 | 
+  7 | spiderman   | 2017 | 
+  1 | el rey leon | 1984 | infantil
+  4 | dragon ball | 1989 | anime
+  5 | monster inc | 2000 | belica
+(6 filas)
+
+movies=# update movies set categoria= 'suspenso' where name= 'toy story';
+UPDATE 1
+movies=# update movies set categoria= 'drama' where name= 'spiderman';
+UPDATE 1
+movies=# update movies set categoria= 'terror' where name= 'star wars';
+UPDATE 1
+movies=# select * from movies
+movies-# ;
+ id |    name     | year | categoria 
+----+-------------+------+-----------
+  1 | el rey leon | 1984 | infantil
+  4 | dragon ball | 1989 | anime
+  5 | monster inc | 2000 | belica
+  3 | toy story   | 1999 | suspenso
+  7 | spiderman   | 2017 | drama
+  6 | star wars   | 1978 | terror
+(6 filas)
+
+movies=# select distinct(categoria) from movies;
+ categoria 
+-----------
+ infantil
+ anime
+ suspenso
+ belica
+ terror
+ drama
+(6 filas)
+
+
+
